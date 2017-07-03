@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using SportsStore.Models;
+using SportsStore.Models.Interfaces;
 
 namespace SportsStore
 {
@@ -16,6 +18,7 @@ namespace SportsStore
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IProductRepository, FakeProductRepository>();
             services.AddMvc();
         }
 

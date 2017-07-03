@@ -3,6 +3,9 @@ using SportsStore.Models.Interfaces;
 
 namespace SportsStore.Models
 {
+    /// <summary>
+    /// Temporary until data storage is implemented
+    /// </summary>
     public class FakeProductRepository : IProductRepository
     {
         public IEnumerable<Product> Products => new List<Product>
