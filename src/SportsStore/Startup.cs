@@ -25,8 +25,6 @@ namespace SportsStore
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            // Todo: Remove UseDeveloperExceptionPage() when deploying the application
-            app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
@@ -38,6 +36,12 @@ namespace SportsStore
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Product}/{action=List}/{id?}");
+            });
             //app.Run(async (context) =>
             //{
             //    await context.Response.WriteAsync("Hello World!");
