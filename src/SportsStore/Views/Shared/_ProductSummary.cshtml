@@ -2,7 +2,7 @@
 
 <div class="well">
     <h3>
-        <strong>@Model.Name ZzZ</strong>
+        <strong>@Model.Name</strong>
         <span class="pull-right label label-primary">
             @Model.Price.ToString("c")
         </span>
@@ -11,7 +11,7 @@
         <input type="hidden" asp-for="ProductID" />
         <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
         <span class="lead">
-            Model.Description
+            @Model.Description
             <button type="submit" class="btn btn-success btn-sm pull-right">
                 Add To Cart
             </button>
