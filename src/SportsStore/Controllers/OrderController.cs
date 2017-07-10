@@ -16,10 +16,26 @@ namespace SportsStore.Controllers
             _orderRepository = repoService;
         }
 
-        //public ViewResult Index => View(new Order());
+        
         public ActionResult Index()
         {
             return View("Checkout");
+        }
+
+        public ViewResult List() =>
+            View(_orderRepository.Orders.Where(o => !o.Shipped));
+
+        [HttpPost]
+        public IActionResult MarkShipped(int orderId)
+        {
+            Order order = _orderRepository.Orders
+                .FirstOrDefault(o => o.OrderID == orderId);
+            if (order != null)
+            {
+                order.Shipped = true;
+                _orderRepository.SaveOrder(order);
+            }
+            return RedirectToAction(nameof(List));
         }
 
         [HttpPost]
