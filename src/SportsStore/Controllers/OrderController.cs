@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SportsStore.Models;
 using SportsStore.Models.Interfaces;
@@ -22,10 +23,12 @@ namespace SportsStore.Controllers
             return View("Checkout");
         }
 
+        [Authorize]
         public ViewResult List() =>
             View(_orderRepository.Orders.Where(o => !o.Shipped));
 
         [HttpPost]
+        [Authorize]
         public IActionResult MarkShipped(int orderId)
         {
             Order order = _orderRepository.Orders
